@@ -1,9 +1,13 @@
 const express = require('express');
 const sequelize = require('./database/sequelize-config');
+const { userController } = require('./controllers');
 
 const app = express();
 
 const PORT = process.env.PORT || 5001;
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   console.log(req.url);
@@ -13,11 +17,13 @@ app.get("/", (req, res) => {
   });
 });
 
+app.use('/api/users', userController);
+
 //nice callback hell
 sequelize.authenticate()
   .then(() => {
     console.log("Database authentication successful.");
-    sequelize.sync({ alter: true })
+    sequelize.sync()
       .then(() => {
         console.log("Database synchronization successful.");
         app.listen(PORT, () => {

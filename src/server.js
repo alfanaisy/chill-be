@@ -1,5 +1,5 @@
 const express = require('express');
-require('dotenv').config();
+const sequelize = require('./database/sequelize-config');
 
 const app = express();
 
@@ -13,6 +13,22 @@ app.get("/", (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server listening on http://localhost:${PORT}`);
-});
+//nice callback hell
+sequelize.authenticate()
+  .then(() => {
+    console.log("Database authentication successful.");
+    sequelize.sync({ alter: true })
+      .then(() => {
+        console.log("Database synchronization successful.");
+        app.listen(PORT, () => {
+          console.log(`Server listening on http://localhost:${PORT}`);
+        });
+      })
+      .catch(error => {
+        console.log("Database synchronization failed: ", error);
+      })
+  })
+  .catch(error => {
+    console.log("Database authentication failed: ", error);
+  })
+

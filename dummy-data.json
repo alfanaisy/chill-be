@@ -1,0 +1,48 @@
+[
+  { "Entity": "EpisodeMovie" },
+  {
+    "title": "Pilot",
+    "description": "The first episode of the series.",
+    "duration": 45,
+    "releaseDate": "2024-01-01",
+    "seriesFilmId": 2,
+    "episodeNumber": 1,
+    "seasonNumber": 1
+  },
+  {
+    "title": "The Finale",
+    "description": "The last episode of the final season.",
+    "duration": 50,
+    "releaseDate": "2024-12-31",
+    "seriesFilmId": 3,
+    "episodeNumber": 10,
+    "seasonNumber": 5
+  },
+  {
+    "title": "Feature Film",
+    "description": "A standalone film in the series universe.",
+    "duration": 120,
+    "releaseDate": "2024-06-15",
+    "seriesFilmId": 2,
+    "episodeNumber": null,
+    "seasonNumber": null
+  },
+  {
+    "title": "Special Episode",
+    "description": "A special episode released between seasons.",
+    "duration": 60,
+    "releaseDate": "2024-04-01",
+    "seriesFilmId": 5,
+    "episodeNumber": null,
+    "seasonNumber": null
+  },
+  {
+    "title": "The Beginning",
+    "description": "An introductory episode that sets up the story.",
+    "duration": 40,
+    "releaseDate": "2024-02-01",
+    "seriesFilmId": 3,
+    "episodeNumber": 1,
+    "seasonNumber": 1
+  }
+]

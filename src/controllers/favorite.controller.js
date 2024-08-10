@@ -11,7 +11,7 @@ router.get('/:userId', async (req, res) => {
     error: false,
     count: result.count,
     data: result.data
-  })
+  });
 });
 
 router.post('/', async (req, res) => {

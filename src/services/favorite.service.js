@@ -1,4 +1,4 @@
-const Favorite = require('../models/relation/favorite.relation');
+const Favorite = require('../models/favorite.model');
 const { findSeriesFilmById } = require('./series-film.service');
 const { findUserById } = require('./user.service');
 

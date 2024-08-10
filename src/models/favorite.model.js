@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
-const sequelize = require("../../database/sequelize-config");
+const sequelize = require("../database/sequelize-config");
 
-const SeriesFilm = require("../series-film.model");
-const User = require("../user.model");
+const SeriesFilm = require("./series-film.model");
+const User = require("./user.model");
 
 const Favorite = sequelize.define("Favorites", {
   createdAt: {

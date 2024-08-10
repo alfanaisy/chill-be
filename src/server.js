@@ -1,6 +1,6 @@
 const express = require('express');
 const sequelize = require('./database/sequelize-config');
-const { userController } = require('./controllers');
+const { userController, favoriteController, seriesFilmController } = require('./controllers');
 
 const app = express();
 
@@ -18,8 +18,9 @@ app.get("/", (req, res) => {
 });
 
 app.use('/api/users', userController);
+app.use('/api/favorites', favoriteController);
+app.use('/api/series-film', seriesFilmController);
 
-//nice callback hell
 sequelize.authenticate()
   .then(() => {
     console.log("Database authentication successful.");

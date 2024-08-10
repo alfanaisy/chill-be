@@ -1,4 +1,8 @@
-const { getFavorite, addToFavorite, removeFromFavorite } = require('../services/favorite.service');
+const {
+  getFavorite,
+  addToFavorite,
+  removeFromFavorite
+} = require('../services/favorite.service');
 
 const router = require('express').Router();
 

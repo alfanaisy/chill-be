@@ -1,5 +1,12 @@
 const { validationResult, matchedData } = require('express-validator');
-const { findAllUsers, createUser, findUserById, findUserByCondition, updateUser, deleteUser } = require('../services/user.service');
+const {
+  findAllUsers,
+  createUser,
+  findUserById,
+  findUserByCondition,
+  updateUser,
+  deleteUser
+} = require('../services/user.service');
 const { createUserSchema, updateUserSchema } = require('../utils/validator/user.validator');
 const omitPassword = require('../utils/helper/omit-password');
 

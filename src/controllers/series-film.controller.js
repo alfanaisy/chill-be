@@ -1,5 +1,11 @@
 const { validationResult, matchedData } = require('express-validator');
-const { getAllSeriesFilm, createSeriesFilm, updateSeriesFilm, findSeriesFilmById, deleteSeriesFilm } = require('../services/series-film.service');
+const {
+  getAllSeriesFilm,
+  createSeriesFilm,
+  updateSeriesFilm,
+  findSeriesFilmById,
+  deleteSeriesFilm
+} = require('../services/series-film.service');
 const { createSeriesFilmSchema, updateSeriesFilmSchema } = require('../utils/validator/series-film.validator');
 
 const router = require('express').Router();

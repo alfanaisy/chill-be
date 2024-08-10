@@ -1,5 +1,11 @@
 const { validationResult, matchedData } = require('express-validator');
-const { getAllEpisodeMovies, findEpisodeMovieById, createEpisodeMovie, updateEpisodeMovie, deleteEpisodeMovie } = require('../services/episode-movie.service');
+const {
+  getAllEpisodeMovies,
+  findEpisodeMovieById,
+  createEpisodeMovie,
+  updateEpisodeMovie,
+  deleteEpisodeMovie
+} = require('../services/episode-movie.service');
 const { createEpisodeMovieSchema, updateEpisodeMovieSchema } = require('../utils/validator/episode-movie.validator');
 const { findSeriesFilmById } = require('../services/series-film.service');
 

@@ -130,6 +130,6 @@ router.delete('/:id', async (req, res) => {
     console.log(error);
     return res.status(500).json({ error: true, message: "Internal server error." });
   }
-})
+});
 
 module.exports = router;

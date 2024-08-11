@@ -1,6 +1,6 @@
 const express = require('express');
 const sequelize = require('./database/sequelize-config');
-const { userController, favoriteController, seriesFilmController, episodeMovieController, genreController, seriesFilmGenreController, paketController } = require('./controllers');
+const { userController, favoriteController, seriesFilmController, episodeMovieController, genreController, seriesFilmGenreController, paketController, orderController } = require('./controllers');
 
 const app = express();
 
@@ -24,6 +24,7 @@ app.use('/api/episode-movie', episodeMovieController);
 app.use('/api/genres', genreController);
 app.use('/api/series-film-genres', seriesFilmGenreController);
 app.use('/api/paket', paketController);
+app.use('/api/orders', orderController);
 
 sequelize.authenticate()
   .then(() => {

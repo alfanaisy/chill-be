@@ -6,6 +6,7 @@ const genreController = require('./genre.controller');
 const seriesFilmGenreController = require('./series-film-genre.controller');
 const paketController = require('./paket.controller');
 const orderController = require('./order.controller');
+const pembayaranController = require('./pembayaran.controller');
 
 module.exports = {
   userController,
@@ -15,5 +16,6 @@ module.exports = {
   genreController,
   seriesFilmGenreController,
   paketController,
-  orderController
+  orderController,
+  pembayaranController
 }

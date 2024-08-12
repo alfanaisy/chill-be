@@ -16,6 +16,7 @@ const Order = sequelize.define('Order', {
       model: User,
       key: 'userId',
     },
+    onDelete: 'CASCADE'
   },
   paketId: {
     type: DataTypes.INTEGER,
@@ -24,6 +25,7 @@ const Order = sequelize.define('Order', {
       model: Paket,
       key: 'paketId',
     },
+    onDelete: 'SET NULL'
   },
   orderDate: {
     type: DataTypes.DATE,

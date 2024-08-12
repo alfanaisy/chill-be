@@ -15,7 +15,8 @@ const Pembayaran = sequelize.define('Pembayaran', {
     references: {
       model: User,
       key: 'userId'
-    }
+    },
+    onDelete: 'CASCADE'
   },
   orderId: {
     type: DataTypes.INTEGER,
@@ -23,7 +24,8 @@ const Pembayaran = sequelize.define('Pembayaran', {
     references: {
       model: Order,
       key: 'orderId'
-    }
+    },
+    onDelete: 'CASCADE'
   },
   amount: {
     type: DataTypes.DECIMAL(10, 2),

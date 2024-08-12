@@ -13,6 +13,11 @@ router.get('/', async (req, res) => {
     message: "Please only search for one condition. Either Genre or Series/Film."
   });
 
+  if (!genreId && !itemId) return res.status(400).json({
+    error: true,
+    message: "Please provide one condition to search. Either Genre or Series/Film."
+  });
+
   if (genreId) {
     const result = await searchGenresSeriesFilms(genreId);
     if (!result) return res.status(404).json({

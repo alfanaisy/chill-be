@@ -1,26 +1,7 @@
 const { checkSchema } = require("express-validator");
-const { findUserById } = require("../../services/user.service");
 const { findSeriesFilmById } = require("../../services/series-film.service");
 
 const addFavoriteValidator = checkSchema({
-  userId: {
-    in: ['body'],
-    isInt: {
-      errorMessage: 'User ID must be an integer',
-    },
-    notEmpty: {
-      errorMessage: 'User ID is required',
-    },
-    custom: {
-      options: async (value, { req }) => {
-        const userExists = await findUserById(value);
-        if (!userExists) {
-          return Promise.reject("Invalid User Id.");
-        }
-        return true;
-      }
-    }
-  },
   itemId: {
     in: ['body'],
     isInt: {
@@ -41,5 +22,5 @@ const addFavoriteValidator = checkSchema({
 });
 
 module.exports = {
-  addFavoriteValidator
+  addFavoriteValidator,
 }

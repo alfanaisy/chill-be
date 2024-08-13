@@ -1,6 +1,7 @@
 const express = require('express');
 const sequelize = require('./database/sequelize-config');
-const { userController, favoriteController, seriesFilmController, episodeMovieController, genreController, seriesFilmGenreController, paketController, orderController, pembayaranController } = require('./controllers');
+const { userController, favoriteController, seriesFilmController, episodeMovieController, genreController, seriesFilmGenreController, paketController, orderController, pembayaranController, authController } = require('./controllers');
+const authMiddleware = require('./middlewares/auth.middleware');
 
 const app = express();
 
@@ -18,7 +19,7 @@ app.get("/", (req, res) => {
 });
 
 app.use('/api/users', userController);
-app.use('/api/favorites', favoriteController);
+app.use('/api/favorites', authMiddleware, favoriteController);
 app.use('/api/series-film', seriesFilmController);
 app.use('/api/episode-movie', episodeMovieController);
 app.use('/api/genres', genreController);
@@ -26,6 +27,7 @@ app.use('/api/series-film-genres', seriesFilmGenreController);
 app.use('/api/paket', paketController);
 app.use('/api/orders', orderController);
 app.use('/api/pembayaran', pembayaranController);
+app.use('/api/auth', authController);
 
 sequelize.authenticate()
   .then(() => {

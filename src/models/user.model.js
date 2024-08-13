@@ -28,7 +28,8 @@ const User = sequelize.define("User", {
     type: DataTypes.DATE
   },
   subscriptionStatus: {
-    type: DataTypes.ENUM('Free', 'Basic', 'Premium')
+    type: DataTypes.ENUM('Free', 'Basic', 'Premium'),
+    defaultValue: 'Free'
   },
   createdAt: {
     type: DataTypes.DATE,

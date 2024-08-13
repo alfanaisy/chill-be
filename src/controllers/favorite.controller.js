@@ -8,8 +8,8 @@ const { addFavoriteValidator } = require('../utils/validator/favorite.validator'
 
 const router = require('express').Router();
 
-router.get('/:userId', async (req, res) => {
-  const { userId } = req.params;
+router.get('/', async (req, res) => {
+  const userId = req.user.id;
 
   const result = await getFavorite(userId);
 
@@ -21,6 +21,8 @@ router.get('/:userId', async (req, res) => {
 });
 
 router.post('/', addFavoriteValidator, async (req, res) => {
+  const userId = req.user.id;
+
   const errors = validationResult(req);
   const cleanData = matchedData(req);
 
@@ -31,7 +33,7 @@ router.post('/', addFavoriteValidator, async (req, res) => {
   }
 
   try {
-    const { data } = await getFavorite(cleanData.userId);
+    const { data } = await getFavorite(userId);
 
     const userFavItem = data.find(item => item.dataValues.seriesFilmId === Number(cleanData.itemId));
 
@@ -40,7 +42,7 @@ router.post('/', addFavoriteValidator, async (req, res) => {
       message: "Data already exists."
     });
 
-    const result = await addToFavorite(cleanData.userId, cleanData.itemId);
+    const result = await addToFavorite(userId, cleanData.itemId);
     if (!result) return res.status(404).json({
       error: true,
       message: "Data not found."
@@ -56,9 +58,9 @@ router.post('/', addFavoriteValidator, async (req, res) => {
   }
 });
 
-router.delete('/:userId', async (req, res) => {
+router.delete('/', async (req, res) => {
   const { itemId } = req.query;
-  const { userId } = req.params;
+  const userId = req.user.id;
 
   try {
     const result = await removeFromFavorite(userId, itemId);

@@ -1,17 +1,31 @@
 const { validationResult, matchedData } = require('express-validator');
 const {
-  getAllSeriesFilm,
   createSeriesFilm,
   updateSeriesFilm,
   findSeriesFilmById,
-  deleteSeriesFilm
+  deleteSeriesFilm,
+  getSeriesFilmByFilter
 } = require('../services/series-film.service');
-const { createSeriesFilmSchema, updateSeriesFilmSchema } = require('../utils/validator/series-film.validator');
+const { createSeriesFilmSchema, updateSeriesFilmSchema, seriesFilmQuerySchema } = require('../utils/validator/series-film.validator');
 
 const router = require('express').Router();
 
-router.get('/', async (req, res) => {
-  const result = await getAllSeriesFilm();
+router.get('/', seriesFilmQuerySchema, async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) return res.status(400).json({
+    errors: errors.array()
+  });
+
+  const { orderBy, sortOrder, search, type } = req.query;
+
+  let filter = {};
+  if (search) {
+    filter.search = search;
+  } else if (type) {
+    filter.type = type;
+  }
+
+  const result = await getSeriesFilmByFilter(filter, orderBy, sortOrder);
 
   res.json({
     error: false,

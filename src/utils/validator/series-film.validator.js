@@ -90,7 +90,36 @@ const updateSeriesFilmSchema = checkSchema({
   },
 });
 
+const seriesFilmQuerySchema = checkSchema({
+  orderBy: {
+    optional: true,
+    isIn: {
+      options: [['title', 'releaseDate']],
+      errorMessage: 'Invalid orderBy property. Please use either "title" or "releaseDate".'
+    }
+  },
+  sortOrder: {
+    optional: true,
+    isIn: {
+      options: [['ASC', 'DESC']],
+      errorMessage: 'Invalid sortOrder. Please use either "ASC" or "DESC".'
+    }
+  },
+  search: {
+    optional: true,
+    isString: true,
+  },
+  type: {
+    optional: true,
+    isIn: {
+      options: [['Film', 'Series']],
+      errorMessage: 'Invalid type. Please use either "Film" or "Series".'
+    }
+  }
+}, ['query']);
+
 module.exports = {
   createSeriesFilmSchema,
-  updateSeriesFilmSchema
+  updateSeriesFilmSchema,
+  seriesFilmQuerySchema
 }

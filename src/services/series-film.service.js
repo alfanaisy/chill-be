@@ -1,13 +1,31 @@
+const { Op } = require("sequelize");
 const SeriesFilm = require("../models/series-film.model")
 
-const getAllSeriesFilm = async () => {
-  const result = await SeriesFilm.findAndCountAll();
+const getSeriesFilmByFilter = async (filter, orderBy, sortOrder) => {
+  const whereClause = {};
+
+  if (filter.search) {
+    whereClause.title = { [Op.iLike]: `%${filter.search}%` };
+  }
+  if (filter.type) {
+    whereClause.type = filter.type;
+  }
+
+  const orderClause = [];
+  if (orderBy && sortOrder) {
+    orderClause.push([orderBy, sortOrder]);
+  }
+
+  const result = await SeriesFilm.findAndCountAll({
+    where: whereClause,
+    order: orderClause,
+  });
 
   return {
     count: result.count,
-    data: result.rows
-  }
-}
+    data: result.rows,
+  };
+};
 
 const createSeriesFilm = async (item) => {
   const result = await SeriesFilm.create(item);
@@ -39,10 +57,11 @@ const deleteSeriesFilm = async (id) => {
 }
 
 
+
 module.exports = {
-  getAllSeriesFilm,
+  getSeriesFilmByFilter,
   createSeriesFilm,
   updateSeriesFilm,
   findSeriesFilmById,
-  deleteSeriesFilm
+  deleteSeriesFilm,
 }

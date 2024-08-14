@@ -75,7 +75,7 @@ router.post('/register', registerValidator, async (req, res) => {
     });
 
     res.json({
-      error: true,
+      error: false,
       data: omitPassword(result),
       token
     });

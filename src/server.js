@@ -32,7 +32,7 @@ app.use('/api/auth', authController);
 sequelize.authenticate()
   .then(() => {
     console.log("Database authentication successful.");
-    sequelize.sync()
+    sequelize.sync({ alter: true })
       .then(() => {
         console.log("Database synchronization successful.");
         app.listen(PORT, () => {

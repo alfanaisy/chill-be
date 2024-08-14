@@ -31,6 +31,15 @@ const User = sequelize.define("User", {
     type: DataTypes.ENUM('Free', 'Basic', 'Premium'),
     defaultValue: 'Free'
   },
+  verificationToken: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    unique: true
+  },
+  isVerified: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false
+  },
   createdAt: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW

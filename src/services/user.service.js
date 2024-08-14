@@ -63,11 +63,22 @@ const deleteUser = async (id) => {
   return deleteResult;
 }
 
+const findUserByToken = async (token) => {
+  const result = await User.findOne({
+    where: {
+      verificationToken: token
+    }
+  });
+
+  return result;
+}
+
 module.exports = {
   findAllUsers,
   findUserById,
   findUserByCondition,
   createUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  findUserByToken
 }

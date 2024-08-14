@@ -21,7 +21,7 @@ const sendVerificationEmail = async (token) => {
     `,
   });
 
-  console.log("Email sent: ", info);
+  console.log("Email sent: ", info.response);
 }
 
 module.exports = {

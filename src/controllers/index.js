@@ -8,6 +8,7 @@ const paketController = require('./paket.controller');
 const orderController = require('./order.controller');
 const pembayaranController = require('./pembayaran.controller');
 const authController = require('./auth.controller');
+const uploadController = require('./upload.controller');
 
 module.exports = {
   userController,
@@ -19,5 +20,6 @@ module.exports = {
   paketController,
   orderController,
   pembayaranController,
-  authController
+  authController,
+  uploadController
 }

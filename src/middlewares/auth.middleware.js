@@ -2,6 +2,11 @@ const { JsonWebTokenError } = require("jsonwebtoken");
 const { verifyToken } = require("../utils/helper/jwt-helper");
 
 const authMiddleware = async (req, res, next) => {
+  if (!req.get('authorization')) return res.status(403).json({
+    error: true,
+    message: "Token not found."
+  });
+
   const token = req.get('authorization').split(' ')[1];
 
   if (!token) return res.status(403).json({

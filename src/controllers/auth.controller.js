@@ -100,6 +100,11 @@ router.get('/verify-email', checkSchema({ token: { isString: true } }, ['query']
       message: "Data not found."
     });
 
+    if (user.isVerified) return res.status(400).json({
+      error: true,
+      message: "User already verified."
+    });
+
     const result = await updateUser(user.userId, { isVerified: true });
     if (result[0] === 0)
       return res.status(500).json({
